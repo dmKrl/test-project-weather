@@ -1,8 +1,14 @@
+import s from './SearchForm.module.css';
 const SearchForm = () => {
   return (
-    <>
-      <input className="search-input" type="text" placeholder="Введите название города"/>
-    </>
+    <form className={s.searchForm}>
+      <input
+        className={s.searchInput}
+        type="text"
+        placeholder="Введите название города"
+      />
+      <input className={s.searchSubmit} type="submit" value="" />
+    </form>
   );
 };
 
