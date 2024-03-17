@@ -1,15 +1,16 @@
 /* eslint-disable react/prop-types */
 import SearchForm from '../SearchForm/SearchForm';
+import s from './Header.module.css';
 
 const Header = (props) => {
   const { isShowingHeadingCityName } = props;
   return (
-    <div className="header">
-      <div className="headerLogo">
+    <div className={s.header}>
+      <div className={s.headerLogo}>
         <img src="/src/assets/images/sun clouds.svg" alt="weather-image" />
         <p>Погода</p>
       </div>
-      <div className="headerInputSearch">
+      <div className={s.headerInputSearch}>
         {isShowingHeadingCityName && <SearchForm />}
       </div>
     </div>
