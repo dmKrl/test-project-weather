@@ -1,4 +1,7 @@
 .description {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .description-heading {
   color: #fff;

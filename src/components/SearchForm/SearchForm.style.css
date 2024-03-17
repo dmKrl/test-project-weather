@@ -15,3 +15,6 @@
   font-weight: 500;
   line-height: 120%;
 }
+.searchInput::after {
+  content: url('/src/assets/images/Search\ SVG.svg');
+}

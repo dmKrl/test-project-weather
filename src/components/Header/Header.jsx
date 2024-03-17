@@ -1,8 +1,17 @@
-const Header = () => {
+/* eslint-disable react/prop-types */
+import SearchForm from '../SearchForm/SearchForm';
+
+const Header = (props) => {
+  const { isShowingHeadingCityName } = props;
   return (
     <div className="header">
-      <img src="" alt="weather-image" />
-      <p>Погода</p>
+      <div className="headerLogo">
+        <img src="/src/assets/images/sun clouds.svg" alt="weather-image" />
+        <p>Погода</p>
+      </div>
+      <div className="headerInputSearch">
+        {isShowingHeadingCityName && <SearchForm />}
+      </div>
     </div>
   );
 };

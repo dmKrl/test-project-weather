@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+.headerLogo {
+  display: flex;
+  width: 192px;
+  align-items: center;
+  gap: 8px;
+}
+.headerLogo img {
+  width: 72px;
+  height: 56px;
+}
+.headerLogo p {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 28px;
+  font-weight: 600;
+}
