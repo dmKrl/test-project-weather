@@ -1,0 +1,18 @@
+.description {
+}
+.description-heading {
+  color: #fff;
+  font-family: 'Poppins';
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%;
+}
+.description-text {
+  color: #fff;
+  font-family: 'Montserrat';
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+}

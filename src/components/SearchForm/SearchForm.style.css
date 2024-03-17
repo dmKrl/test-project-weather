@@ -1,0 +1,17 @@
+.searchInput {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 460px;
+  padding: 20px 15px;
+  border-radius: 20px;
+  border: 2px solid #fff;
+}
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Montserrat';
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+}
