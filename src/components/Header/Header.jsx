@@ -10,7 +10,10 @@ const Header = () => {
     <div className={s.header}>
       <div className={s.headerLogo}>
         <a href="/">
-          <img src="/src/assets/images/icons/sun clouds.svg" alt="weather-image" />
+          <img
+            src="/src/assets/images/icons/sun clouds.svg"
+            alt="weather-image"
+          />
         </a>
         <p>Погода</p>
       </div>
