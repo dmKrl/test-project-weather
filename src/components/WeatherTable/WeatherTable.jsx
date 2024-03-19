@@ -1,95 +1,95 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import s from './WeatherTable.module.css';
+import dataWeatherContext from './../../context/dataWeatherContext';
+import changeDate from './../../app/changeDate';
 
 const WeatherTable = () => {
   const [showToday, setShowToday] = useState(true);
+  const [chooseDayOrWeek, setChooseDayOrWeek] = useState('today');
+  const { dataWeather } = useContext(dataWeatherContext);
+  const { todayWeather, weekWeather } = dataWeather;
 
-  const toggleView = () => {
+  console.log(weekWeather);
+
+  const toggleView = (string) => {
+    if (string == chooseDayOrWeek) {
+      return;
+    }
     setShowToday(!showToday);
-  };
-
-  const timeIntervals = showToday
-    ? ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00']
-    : ['Пн', 'Вт', 'Ср', 'Чт', 'Пт'];
-
-  const data = {
-    '00:00': {
-      temperature: '10°C',
-      windSpeed: '5 м/с',
-      precipitation: 'Солнечно',
-    },
-    '04:00': {
-      temperature: '13°C',
-      windSpeed: '7 м/с',
-      precipitation: 'Облачно',
-    },
-    '08:00': {
-      temperature: '15°C',
-      windSpeed: '8 м/с',
-      precipitation: 'Дождь',
-    },
-    '12:00': {
-      temperature: '18°C',
-      windSpeed: '9 м/с',
-      precipitation: 'Пасмурно',
-    },
-    '16:00': {
-      temperature: '20°C',
-      windSpeed: '10 м/с',
-      precipitation: 'Гроза',
-    },
-    '20:00': {
-      temperature: '16°C',
-      windSpeed: '6 м/с',
-      precipitation: 'Солнечно',
-    },
-    Пн: {
-      temperature: '12°C',
-      windSpeed: '4 м/с',
-      precipitation: 'Переменная облачность',
-    },
-    Вт: {
-      temperature: '14°C',
-      windSpeed: '6 м/с',
-      precipitation: 'Дождь',
-    },
-    Ср: {
-      temperature: '16°C',
-      windSpeed: '7 м/с',
-      precipitation: 'Гроза',
-    },
-    Чт: {
-      temperature: '18°C',
-      windSpeed: '9 м/с',
-      precipitation: 'Солнечно',
-    },
-    Пт: {
-      temperature: '15°C',
-      windSpeed: '5 м/с',
-      precipitation: 'Облачно',
-    },
+    setChooseDayOrWeek(string);
   };
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div className={s.weatherButtonSwitchBlock}>
         <button
-          style={{ borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }}
-          onClick={toggleView}
+          className={`${s.weatherButtonSwitch} ${showToday && s.active}`}
+          onClick={() => toggleView('today')}
         >
           Сегодня
         </button>
         <button
-          style={{ borderTopLeftRadius: '15px', borderTopRightRadius: '15px' }}
-          onClick={toggleView}
+          className={`${s.weatherButtonSwitch} ${!showToday && s.active}`}
+          onClick={() => toggleView('week')}
         >
           5 дней
         </button>
       </div>
 
-     <div className={s.weatherTable}>
-      
-     </div>
+      <div className={s.weatherTable}>
+        {showToday ? (
+          <div className={s.weatherForToday}>
+            <div className={s.weatherInfoToday}>
+              <p>
+                Температура воздуха: <strong>{todayWeather?.tempC} °C</strong>
+              </p>
+              <p>
+                Ощущается как: <strong>{todayWeather?.feelsLikeC} °C</strong>
+              </p>
+              <p>
+                Осадки в мм: <strong>{todayWeather?.precipMm}</strong>
+              </p>
+              <p>
+                Скорость ветра: <strong>{todayWeather?.windMph} м/с</strong>
+              </p>
+              <p>
+                <strong>{todayWeather?.condition}</strong>{' '}
+              </p>
+            </div>
+            <div className={s.weatherIconToday}>
+              <img src={todayWeather?.imgPath} alt="cloudy" />
+            </div>
+          </div>
+        ) : (
+          <div className={s.weatherCardsContainer}>
+            {weekWeather?.map((dataWeek) => (
+              <div key={dataWeek.date} className={s.weatherCard}>
+                <h3>{changeDate(dataWeek.date)}</h3>
+                <img src={dataWeek.imgPathWeek} alt="" />
+                <div className={s.weatherCardInfo}>
+                  <p>
+                    Температура воздуха:{' '}
+                    <strong>{dataWeek.day.avgtemp_c} °C</strong>
+                  </p>
+                  <p>
+                    Скорость ветра:{' '}
+                    <strong>{dataWeek.day.maxwind_mph} м/с</strong>
+                  </p>
+                  <p>
+                    Осадки: <strong>{dataWeek.day.totalprecip_mm}</strong>
+                  </p>
+                  <p>
+                    Влажность: <strong>{dataWeek.day.avghumidity}%</strong>
+                  </p>
+                  <p>
+                    Облачность: <strong>{dataWeek.conditionWeek}</strong>
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import Description from '../Description/Description';
 import s from './MainLayouts.module.css';
 import ShowingSearchContext from '../../context/showingSearchContext';
 import SearchForm from '../SearchForm/SearchForm';
-// import WeatherTable from '../WeatherTable/WeatherTable';
+import WeatherTable from '../WeatherTable/WeatherTable';
 
 const MainLayouts = () => {
   const { isShowingInput } = useContext(ShowingSearchContext);
@@ -11,8 +11,7 @@ const MainLayouts = () => {
     <div className={s.mainLayouts}>
       <div className={s.mainLayoutsContainer}>
         <Description isShowingInput={isShowingInput} />
-        {!isShowingInput && <SearchForm />}
-        {/* <WeatherTable /> */}
+        {!isShowingInput ? <SearchForm /> : <WeatherTable />}
       </div>
     </div>
   );

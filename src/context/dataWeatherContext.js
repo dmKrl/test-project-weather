@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 const dataWeatherContext = createContext({
-  dataWeather: '',
+  dataWeather: {},
   changeDataWeather: () => {},
 });
 

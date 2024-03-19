@@ -1,13 +1,15 @@
 .weatherTable {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   max-width: 1420px;
-  height: 386px;
-  flex-shrink: 0;
+  min-width: 600px;
+  min-height: 326px;
+  gap: 55px;
   border-radius: 0px 20px 20px 20px;
-  border: 1px solid var(--Main-White, #fff);
-  background: var(--Main-Grey-50, rgba(88, 88, 88, 0.5));
+  border: 1px solid #fff;
+  background: rgba(88, 88, 88, 0.5);
   backdrop-filter: blur(15px);
   gap: 15px;
 }
@@ -19,4 +21,78 @@
   justify-content: end;
   width: 100%;
   gap: 10px;
+}
+.weatherButtonSwitchBlock {
+  display: flex;
+  justify-content: flex-start;
+}
+.weatherButtonSwitch {
+  cursor: pointer;
+  background: rgba(88, 88, 88, 0.5);
+  color: #fff;
+  border: 1px solid #fff;
+  backdrop-filter: blur(15px);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 15px 66px;
+  transition: all 0.5s ease;
+}
+.weatherButtonSwitch:hover {
+  background: rgba(167, 167, 167, 0.864);
+}
+.weatherForToday {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #fff;
+}
+.weatherInfoToday {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.weatherIconToday img {
+  width: 180px;
+  height: 141px;
+  flex-shrink: 0;
+}
+.active {
+  transition: all 0.5s ease;
+  background: rgb(255, 255, 255);
+  color: black;
+}
+.weatherCardsContainer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  color: #fff;
+}
+
+.weatherCard {
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  background: rgba(57, 57, 57, 0.762);
+  border-radius: 5px;
+  text-align: center;
+}
+.weatherCard img {
+  width: 50px;
+}
+
+.weatherCard h3 {
+  margin-top: 0;
+  color: #c8c8c8;
+}
+
+.weatherCard p {
+  text-align: start;
+  margin: 5px 0;
+  font-size: 16px;
+}
+.weatherCardInfo {
+  display: flex;
+  flex-direction: column;
+  
 }

@@ -2,10 +2,10 @@
 import { useContext } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import s from './Header.module.css';
-import ShowingSearchContext from '../../context/showingSearchContext';
+import showingSearchContext from '../../context/showingSearchContext';
 
 const Header = () => {
-  const { isShowingInput } = useContext(ShowingSearchContext);
+  const { isShowingInput } = useContext(showingSearchContext);
   return (
     <div className={s.header}>
       <div className={s.headerLogo}>

@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
-const ShowingSearchContext = createContext({
+const showingSearchContext = createContext({
   isShowingInput: false,
   changeIsShowing: () => {},
 });
 
-export default ShowingSearchContext;
+export default showingSearchContext;

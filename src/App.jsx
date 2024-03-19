@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import './App.css';
 import AppRoutes from './routes';
-import ShowingSearchContext from './context/showingSearchContext';
+import showingSearchContext from './context/showingSearchContext';
 import dataWeatherContext from './context/dataWeatherContext';
+import showingErrorRequest from './context/showingErrorRequest';
 
 function App() {
   const [isShowingSearchInput, setIsShowingSearchInput] = useState(false);
-  const [dataWeather, setDataWeather] = useState('');
+  const [dataWeather, setDataWeather] = useState({});
+  const [errorRequest, setErrorRequest] = useState(false);
 
   return (
-    <ShowingSearchContext.Provider
+    <showingSearchContext.Provider
       value={{
         isShowingInput: isShowingSearchInput,
         changeIsShowing: setIsShowingSearchInput,
@@ -21,9 +23,13 @@ function App() {
           changeDataWeather: setDataWeather,
         }}
       >
-        <AppRoutes />;
+        <showingErrorRequest.Provider
+          value={{ errorRequest, changeErrorRequest: setErrorRequest }}
+        >
+          <AppRoutes />;
+        </showingErrorRequest.Provider>
       </dataWeatherContext.Provider>
-    </ShowingSearchContext.Provider>
+    </showingSearchContext.Provider>
   );
 }
 
