@@ -3,9 +3,11 @@ import s from './Description.module.css';
 import dataWeatherContext from './../../context/dataWeatherContext';
 import { useContext } from 'react';
 import showingErrorRequest from '../../context/showingErrorRequest';
+import showingSearchContext from '../../context/showingSearchContext';
 const Description = ({ isShowingInput }) => {
   const { dataWeather } = useContext(dataWeatherContext);
   const { errorRequest } = useContext(showingErrorRequest);
+  const { isShowingLoader } = useContext(showingSearchContext);
   return (
     <div className={s.description}>
       {isShowingInput ? (
@@ -23,10 +25,11 @@ const Description = ({ isShowingInput }) => {
           </p>
           {errorRequest && (
             <p className={s.descriptionTextError}>
-              Произошла ошибка запроса, введите корректное название города и
-              повторите попытку
+              Произошла ошибка запроса, введите корректное название города,
+              проверьте подключение к интернету повторите попытку
             </p>
           )}
+          {isShowingLoader && <p className={s.descriptionText}>Загрузка...</p>}
         </>
       )}
     </div>

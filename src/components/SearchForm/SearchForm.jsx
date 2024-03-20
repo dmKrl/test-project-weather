@@ -8,13 +8,14 @@ import showingErrorRequest from '../../context/showingErrorRequest';
 
 const SearchForm = () => {
   const [cityName, setCityName] = useState('');
-  const { changeIsShowing } = useContext(ShowingSearchContext);
+  const { changeIsShowing, changeIsShowingLoader } =
+    useContext(ShowingSearchContext);
   const { changeDataWeather } = useContext(dataWeatherContext);
   const { changeErrorRequest } = useContext(showingErrorRequest);
 
   function checkForErrorAndChangeData({ data }) {
+    changeIsShowingLoader(false);
     if (data?.error) {
-      console.log(data?.error);
       changeIsShowing(false);
       changeErrorRequest(true);
     } else {
@@ -29,9 +30,8 @@ const SearchForm = () => {
       const fileName =
         (data?.current.is_day ? infoLang.day : infoLang.night) + '.png';
       const imgPath = filePath + fileName;
-      console.log(data?.forecast.forecastday);
 
-      // Реализация своих иконок для 5 дней
+      // Реализация своих иконок для 5 дней - измененный массив на неделю
       const weatherWeekData = data?.forecast.forecastday.map((dayWeek) => {
         // Изменяем основную иконку с API на кастомную
         const filePathWeek = '/src/assets/images/' + 'day' + '/';
@@ -45,7 +45,7 @@ const SearchForm = () => {
         return dayWeek; // Возвращаем измененный объект dayWeek
       });
 
-      //Отображаем полученные данные в карточке
+      //Отображаем полученные данные в карточке для текущего дня
       //Разметка для карточки
       const weatherData = {
         name: data?.location.name,
@@ -54,6 +54,7 @@ const SearchForm = () => {
         feelsLikeC: data?.current.feelslike_c,
         windMph: data?.current.wind_mph,
         precipMm: data?.current.precip_mm,
+        date: data?.forecast?.forecastday[0]?.date,
         condition: data?.current.is_day
           ? infoLang.languages[23]['day_text']
           : infoLang.languages[23]['night_text'],
@@ -70,9 +71,22 @@ const SearchForm = () => {
   async function onSubmit(e) {
     e.preventDefault();
     changeErrorRequest(false);
+    changeIsShowingLoader(true);
+    changeIsShowing(false);
     const response = await getWeather(cityName);
+    if (!response.location) {
+      changeErrorRequest(true);
+      changeIsShowingLoader(false);
+      return;
+    }
     checkForErrorAndChangeData({ data: response });
     setCityName('');
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      onSubmit(e);
+    }
   }
 
   return (
@@ -81,6 +95,7 @@ const SearchForm = () => {
         className={s.searchInput}
         type="text"
         value={cityName}
+        onKeyDown={handleKeyDown}
         onChange={(event) => setCityName(event.target.value)}
         placeholder="Введите название города"
       />

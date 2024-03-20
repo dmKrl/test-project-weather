@@ -9,8 +9,6 @@ const WeatherTable = () => {
   const { dataWeather } = useContext(dataWeatherContext);
   const { todayWeather, weekWeather } = dataWeather;
 
-  console.log(weekWeather);
-
   const toggleView = (string) => {
     if (string == chooseDayOrWeek) {
       return;
@@ -39,25 +37,28 @@ const WeatherTable = () => {
       <div className={s.weatherTable}>
         {showToday ? (
           <div className={s.weatherForToday}>
-            <div className={s.weatherInfoToday}>
-              <p>
-                Температура воздуха: <strong>{todayWeather?.tempC} °C</strong>
-              </p>
-              <p>
-                Ощущается как: <strong>{todayWeather?.feelsLikeC} °C</strong>
-              </p>
-              <p>
-                Осадки в мм: <strong>{todayWeather?.precipMm}</strong>
-              </p>
-              <p>
-                Скорость ветра: <strong>{todayWeather?.windMph} м/с</strong>
-              </p>
-              <p>
-                <strong>{todayWeather?.condition}</strong>{' '}
-              </p>
-            </div>
-            <div className={s.weatherIconToday}>
-              <img src={todayWeather?.imgPath} alt="cloudy" />
+            <h3>{changeDate(todayWeather?.date)}</h3>
+            <div className={s.weatherTodayBlock}>
+              <div className={s.weatherInfoToday}>
+                <p>
+                  Температура воздуха: <strong>{todayWeather?.tempC} °C</strong>
+                </p>
+                <p>
+                  Ощущается как: <strong>{todayWeather?.feelsLikeC} °C</strong>
+                </p>
+                <p>
+                  Осадки в мм: <strong>{todayWeather?.precipMm}</strong>
+                </p>
+                <p>
+                  Скорость ветра: <strong>{todayWeather?.windMph} м/с</strong>
+                </p>
+                <p>
+                  Облачность: <strong>{todayWeather?.condition}</strong>{' '}
+                </p>
+              </div>
+              <div className={s.weatherIconToday}>
+                <img src={todayWeather?.imgPath} alt="cloudy" />
+              </div>
             </div>
           </div>
         ) : (

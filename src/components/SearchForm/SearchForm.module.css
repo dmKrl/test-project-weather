@@ -42,3 +42,14 @@ input {
   background-size: cover;
   cursor: pointer;
 }
+@media (max-width: 690px) {
+  .searchForm {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 300px;
+    padding: 20px 15px;
+    border-radius: 20px;
+    border: 2px solid #fff;
+  }
+}

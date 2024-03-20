@@ -19,3 +19,10 @@
   font-size: 28px;
   font-weight: 600;
 }
+
+@media (max-width: 690px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+}

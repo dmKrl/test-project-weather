@@ -7,6 +7,8 @@ import showingErrorRequest from './context/showingErrorRequest';
 
 function App() {
   const [isShowingSearchInput, setIsShowingSearchInput] = useState(false);
+  const [isShowingSearchInputLoader, setIsShowingSearchInputLoader] =
+    useState(false);
   const [dataWeather, setDataWeather] = useState({});
   const [errorRequest, setErrorRequest] = useState(false);
 
@@ -14,6 +16,8 @@ function App() {
     <showingSearchContext.Provider
       value={{
         isShowingInput: isShowingSearchInput,
+        isShowingLoader: isShowingSearchInputLoader,
+        changeIsShowingLoader: setIsShowingSearchInputLoader,
         changeIsShowing: setIsShowingSearchInput,
       }}
     >

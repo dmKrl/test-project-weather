@@ -16,6 +16,11 @@
   padding: 6px;
   font-family: 'Montserrat';
 }
+@media (max-width: 690px) {
+  .description span {
+    right: 20px;
+  }
+}
 .descriptionHeading {
   color: #fff;
   font-family: 'Poppins';
