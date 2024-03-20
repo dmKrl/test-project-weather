@@ -85,12 +85,16 @@ const SearchForm = () => {
 
   function handleKeyDown(e) {
     if (e.key === 'Enter') {
-      onSubmit(e);
+      e.preventDefault();
+      const isValid = e.target.checkValidity();
+      if (isValid) {
+        onSubmit(e);
+      }
     }
   }
 
   return (
-    <form className={s.searchForm}>
+    <form className={s.searchForm} onSubmit={onSubmit}>
       <input
         className={s.searchInput}
         type="text"
@@ -98,16 +102,9 @@ const SearchForm = () => {
         onKeyDown={handleKeyDown}
         onChange={(event) => setCityName(event.target.value)}
         placeholder="Введите название города"
+        required
       />
-      <input
-        className={s.searchSubmit}
-        type="button"
-        onClick={(e) => {
-          e.preventDefault();
-          onSubmit(e);
-        }}
-        value=""
-      />
+      <button className={s.searchSubmit} type="submit"></button>
     </form>
   );
 };

@@ -36,6 +36,7 @@ input {
 .searchSubmit {
   width: 25px;
   height: 25px;
+  border: none;
   background: none;
   background-image: url('/src/assets/images/icons/Search.svg');
   background-repeat: no-repeat;
